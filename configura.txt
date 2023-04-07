@@ -11,7 +11,7 @@
 
 
 ## Ahora puedo visualizar el proyecto que he levantado a través de:
-	pyhon manage.py runserver 10.13.123.53:8200
+	python manage.py runserver 10.13.123.53:8200
 
 	Al parecer todo funciona también correctamente con esta pequeña sobre sobre un sistema para:
 		Registro de Actividades usando sólo la interfaz de Admin de Django 3.2
@@ -19,4 +19,3 @@
 ## El proyecto en git se llama:
 	registroActividad2023
 
-	
