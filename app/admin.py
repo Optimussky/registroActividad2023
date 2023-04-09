@@ -25,7 +25,7 @@ admin.site.register(Asunto,AsuntoAdmin)
 class RegistroAdmin(admin.ModelAdmin):
     list_display = ('id','area','asunto','registro', 'created_at','updated_at')
     search_fields =  ('area__nombre','asunto__categoria','registro')
-    list_filter = ('registro',)
+    list_filter = ('registro','created_at','asunto',)
     list_display_links = ('area',)
     
     
