@@ -42,3 +42,15 @@ class Registro(models.Model):
         return self.registro
 
 
+class Agenda_telefonica(models.Model):
+    area_persona = models.CharField(max_length=120, help_text="Área o Persona")
+    numero = models.CharField(max_length=80,help_text="Número o Extensión")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["area_persona"]
+        verbose_name_plural = "Agenda_telefonica"
+
+    def __str__(self):
+        return  self.area_persona

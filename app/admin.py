@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Areas, Asunto, Registro
+from .models import Areas, Asunto, Registro, Agenda_telefonica
 
 
 class AreasAdmin(admin.ModelAdmin):
@@ -34,3 +34,13 @@ class RegistroAdmin(admin.ModelAdmin):
     #actions = [make_published]
 
 admin.site.register(Registro,RegistroAdmin)
+
+class Agenda_telefonicaAdmin(admin.ModelAdmin):
+    list_display = ('id','area_persona','numero','created_at')
+    search_fields = ('area_persona','numero')
+    list_filter = ('area_persona','numero')
+    list_display_links = ('area_persona',)
+
+    ordering = ['area_persona']
+
+admin.site.register(Agenda_telefonica,Agenda_telefonicaAdmin)
