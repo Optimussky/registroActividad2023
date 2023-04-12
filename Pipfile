@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "==3.2"
 wheel = "*"
+django-import-export = "*"
 
 [dev-packages]
 

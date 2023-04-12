@@ -1,5 +1,6 @@
+from import_export import resources
 from django.contrib import admin
-
+from import_export.admin import ImportExportModelAdmin
 # Register your models here.
 from .models import Areas, Asunto, Registro, Agenda_telefonica
 
@@ -22,7 +23,15 @@ class AsuntoAdmin(admin.ModelAdmin):
 
 admin.site.register(Asunto,AsuntoAdmin)
 
+class RegistroResources(resources.ModelResource):
+
+    fields = ('area__nombre','asunto__categoria','registro', 'created_at','updated_at')
+
+    class Meta:
+        model = Registro
+
 class RegistroAdmin(admin.ModelAdmin):
+    resource_class = RegistroResources
     list_display = ('id','area','asunto','registro', 'created_at','updated_at')
     search_fields =  ('area__nombre','asunto__categoria','registro')
     list_filter = ('registro','created_at','asunto',)
