@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 class Areas(models.Model):
-    nombre = models.CharField(max_length=200)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    nombre = models.CharField(verbose_name='Nombre',max_length=200,help_text="Agrege nueva área")
+    created_at = models.DateTimeField(verbose_name='Creado',auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Actualizado',auto_now=True)
 
     class Meta:
         ordering = ["nombre"]
@@ -15,9 +15,9 @@ class Areas(models.Model):
 
 
 class Asunto(models.Model):
-    categoria = models.CharField(max_length=200)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    categoria = models.CharField(verbose_name='Categoría',max_length=200)
+    created_at = models.DateTimeField(verbose_name='Creado',auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Actualizado',auto_now=True)
 
     class Meta:
         ordering = ["categoria"]
@@ -26,12 +26,17 @@ class Asunto(models.Model):
     def __str__(self):
         return self.categoria
 
+
+
+
+
 class Registro(models.Model):
-    area = models.ForeignKey(Areas, on_delete=models.CASCADE)
+
+    area = models.ForeignKey(Areas,verbose_name='Área', on_delete=models.CASCADE)
     asunto = models.ForeignKey(Asunto, on_delete=models.CASCADE)
-    registro = models.CharField(max_length=250,help_text="Descripción del registro")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    registro = models.CharField(max_length=250, verbose_name='RegistroXs', help_text="Descripción del registro")
+    created_at = models.DateTimeField(verbose_name='Creado', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Actualizado',auto_now=True)
 
     class Meta:
         ordering = ["-created_at"]
@@ -43,14 +48,14 @@ class Registro(models.Model):
 
 
 class Agenda_telefonica(models.Model):
-    area_persona = models.CharField(max_length=120, help_text="Área o Persona")
-    numero = models.CharField(max_length=80,help_text="Número o Extensión")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    area_persona = models.CharField(verbose_name='Área/Persona',max_length=120, help_text="Área o Persona")
+    numero = models.CharField(verbose_name='Número',max_length=80,help_text="Número o Extensión")
+    created_at = models.DateTimeField(verbose_name='Creado',auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Actualizado',auto_now=True)
 
     class Meta:
         ordering = ["area_persona"]
-        verbose_name_plural = "Agenda_telefonica"
+        verbose_name_plural = "Agenda_telefónica"
 
     def __str__(self):
         return  self.area_persona
