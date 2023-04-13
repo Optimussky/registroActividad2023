@@ -22,5 +22,5 @@ admin.site.site_title = 'Sistema de Registro de Actividades' # default: "Django 
 
 
 urlpatterns = [
-    path('secretRoute/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]
