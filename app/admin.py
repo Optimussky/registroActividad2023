@@ -2,8 +2,9 @@ from import_export import resources
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
-from .models import Areas, Asunto, Registro, Agenda_telefonica
+from .models import Areas, Asunto, Registro
 
+# Import Export:  URL : https://www.youtube.com/watch?v=DIr1wYjTM64
 
 class AreasAdmin(admin.ModelAdmin):
     list_display = ['id','nombre', 'created_at', 'updated_at']
@@ -25,12 +26,12 @@ admin.site.register(Asunto,AsuntoAdmin)
 
 class RegistroResources(resources.ModelResource):
 
-    #fields = ('area__nombre','asunto__categoria','registro', 'created_at','updated_at')
+    fields = ('area__nombre','asunto__categoria','registro', 'created_at','updated_at')
 
     class Meta:
         model = Registro
 
-class RegistroAdmin(admin.ModelAdmin):
+class RegistroAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     resource_class = RegistroResources
     readonly_fields = ('created_at','updated_at')
     list_display = ('id','area','asunto','registro', 'created_at','updated_at')
@@ -46,12 +47,3 @@ class RegistroAdmin(admin.ModelAdmin):
 
 admin.site.register(Registro,RegistroAdmin)
 
-class Agenda_telefonicaAdmin(admin.ModelAdmin):
-    list_display = ('id','area_persona','numero','created_at')
-    search_fields = ('area_persona','numero')
-    list_filter = ('area_persona','numero')
-    list_display_links = ('area_persona',)
-
-    ordering = ['area_persona']
-
-admin.site.register(Agenda_telefonica,Agenda_telefonicaAdmin)
