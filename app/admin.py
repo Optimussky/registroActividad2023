@@ -33,12 +33,15 @@ class RegistroResources(resources.ModelResource):
 
 class RegistroAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     resource_class = RegistroResources
+    date_hierarchy = ('created_at')
     readonly_fields = ('created_at','updated_at')
     list_display = ('id','area','asunto','registro', 'created_at','updated_at')
+    list_editable = ['registro']
     search_fields =  ('area__nombre','asunto__categoria','registro')
     #list_filter = ('registro','created_at','asunto',)
     list_filter = ('created_at','asunto__categoria')
     list_display_links = ('area',)
+    list_per_page = 10
     
     
     

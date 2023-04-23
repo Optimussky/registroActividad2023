@@ -1,0 +1,3 @@
+# Personalizar Admin de Django:
+
+https://coffeebytes.dev/el-django-admin-panel-y-su-personalizacion/
