@@ -1,4 +1,5 @@
 from import_export import resources
+from import_export.fields import Field
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
@@ -26,10 +27,17 @@ admin.site.register(Asunto,AsuntoAdmin)
 
 class RegistroResources(resources.ModelResource):
 
-    fields = ('area__nombre','asunto__categoria','registro', 'created_at','updated_at')
+    full_registro = Field()
+    #fields = ('area__nombre','asunto__categoria','registro', 'created_at','updated_at')
 
     class Meta:
         model = Registro
+
+    def exporta_datos(self, registro):
+        registro_area = getattr(registro,'area__nombre','unknow')
+        registro_asunto = getattr(registro,'asunto__categoria','unknow')
+        registro_reg = getattr('registro','registro','unknow')
+        return str(f'{registro_area,registro_asunto,registro_reg}')
 
 class RegistroAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     resource_class = RegistroResources
